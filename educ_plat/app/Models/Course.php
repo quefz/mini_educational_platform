@@ -21,4 +21,15 @@ class Course extends Model
     protected $casts = [
         'price' => 'decimal:2'
     ];
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'course_user')
+                   ->withTimestamps();
+    }
+
+    public function autor()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
