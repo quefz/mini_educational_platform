@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('certificates', function (Blueprint $table) {
             $table->id();
-            $table->string('comment');
-            $table->unsignedTinyInteger('rating')->default(5);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete('cascade');
             $table->foreignId('course_id')->constrained()->cascadeOnDelete('cascade');
+            $table->string('certificate_code')->unique();
+            $table->date('issued_at');
             $table->timestamps();
-
-            $table->unique(['user_id', 'course_id']);
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('certificates');
     }
 };
