@@ -52,8 +52,13 @@ class User extends Authenticatable
                     ->withTimestamps();
     }
 
-    public function autoredCourses()
+    public function authoredCourses()
     {
         return $this->hasMany(Course::class, 'user_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }

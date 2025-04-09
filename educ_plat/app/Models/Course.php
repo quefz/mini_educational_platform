@@ -28,8 +28,18 @@ class Course extends Model
                    ->withTimestamps();
     }
 
-    public function autor()
+    public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function avgRating()
+    {
+        return $this->reviews()->avg('rating');
     }
 }
