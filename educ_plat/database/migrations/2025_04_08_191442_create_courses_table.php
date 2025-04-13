@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->string('thumbnail');
+            $table->string('thumbnail')->nullable();
             $table->decimal('price', 8, 2)->default(0);
-            $table->enum('level', ['beginner', 'intermediate', 'advanced']);
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');;
+            $table->enum('level', ['beginner', 'intermediate', 'advanced'])->default('beginner');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
